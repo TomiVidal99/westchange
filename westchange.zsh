@@ -1,15 +1,15 @@
-DIRECTORIES=${0:A:h}/directories
+WC_DIRECTORIES=${0:A:h}/directories
 
 # TODO: should auto install fzf
 # check if the user has the fzf utility
 
-if [ ! -f $DIRECTORIES ]; then
-  touch $DIRECTORIES
+if [ ! -f $WC_DIRECTORIES ]; then
+  touch $WC_DIRECTORIES
 fi
 
 # switch between the defined directories.
 function switch_directory() {
-  DIRS=$(cat $DIRECTORIES)
+  DIRS=$(cat $WC_DIRECTORIES)
   DIR=""; DIR=$(echo $DIRS | cut -d'=' -f1 | fzf)
   if [ "$DIR" = "" ]; then
     echo "No directory selected. Did not switch."
@@ -33,20 +33,20 @@ function add_directory() {
   fi
   DIR=$(pwd)
   FULLPATH="${DIR_NAME}=${DIR}"
-  echo $FULLPATH >> $DIRECTORIES
+  echo $FULLPATH >> $WC_DIRECTORIES
 }
 
 # remove current directory from the working directory list
 function remove_directory() {
   zle -I
-  if [ -z $DIRECTORIES ]; then
+  if [ -z $WC_DIRECTORIES ]; then
     # exit if the are no working directories
     clear
     echo "No working directories"
     return 
   fi
-  DIR=$(echo $DIRECTORIES | cut -d'=' -f1 | fzf)
-  FULLPATH=$(echo $DIRECTORIES | grep $DIR)
+  DIR=$(echo $WC_DIRECTORIES | cut -d'=' -f1 | fzf)
+  FULLPATH=$(echo $WC_DIRECTORIES | grep $DIR)
   PATTERN_TO_REMOVE="/$(echo $FULLPATH | sed 's/\//\\\//g')/d"
   while true; do
       read "yn?Remove '$FULLPATH' [y/n]: "
@@ -55,7 +55,7 @@ function remove_directory() {
           [Nn]*) echo "Aborted" ; return  1;;
       esac
   done
-  sed -i $PATTERN_TO_REMOVE $DIRECTORIES
+  sed -i $PATTERN_TO_REMOVE $WC_DIRECTORIES
 }
 
 # load the hotkeys to quickly change directory
