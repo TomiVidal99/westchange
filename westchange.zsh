@@ -1,14 +1,9 @@
 DIRECTORIES=${0:A:h}/directories
 
-echo "$DIRECTORIES"
-
-return
-
 # TODO: should auto install fzf
 # check if the user has the fzf utility
 
 if [ ! -f $DIRECTORIES ]; then
-  echo "making '$DIRECTORIES'"
   touch $DIRECTORIES
 fi
 
