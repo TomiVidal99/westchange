@@ -3,14 +3,19 @@ DIRECTORIES=directories
 # TODO: should auto install fzf
 # check if the user has the fzf utility
 
+if [ ! -f $DIRECTORIES ]; then
+  touch $DIRECTORIES
+fi
+
 # switch between the defined directories.
 function switch_directory() {
-  DIR=""; DIR=$(echo $DIRECTORIES | cut -d'=' -f1 | fzf)
+  DIRS=$(cat $DIRECTORIES)
+  DIR=""; DIR=$(echo $DIRS | cut -d'=' -f1 | fzf)
   if [ "$DIR" = "" ]; then
     echo "No directory selected. Did not switch."
     return
   fi
-  FULLPATH=$(echo $DIRECTORIES | grep $DIR | head -n 1 | cut -d'=' -f2)
+  FULLPATH=$(echo $DIRS | grep $DIR | head -n 1 | cut -d'=' -f2)
   if [ -d $FULLPATH ]; then
     cd "$FULLPATH"
     update_status
@@ -55,4 +60,4 @@ function remove_directory() {
 }
 
 # load the hotkeys to quickly change directory
-source hotkeys.sh
+source ${0:A:h}/hotkeys.sh
