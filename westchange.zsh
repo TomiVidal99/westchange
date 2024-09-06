@@ -1,4 +1,4 @@
-DIRECTORIES=directories
+DIRECTORIES=${0:A:h}/directories
 
 # TODO: should auto install fzf
 # check if the user has the fzf utility
