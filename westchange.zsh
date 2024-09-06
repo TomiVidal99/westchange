@@ -55,4 +55,4 @@ function remove_directory() {
 }
 
 # load the hotkeys to quickly change directory
-source ./hotkeys.sh
+source hotkeys.sh
