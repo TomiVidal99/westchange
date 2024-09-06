@@ -1,8 +1,10 @@
 DIRECTORIES=directories
 
+# TODO: should auto install fzf
+# check if the user has the fzf utility
+
 # switch between the defined directories.
 function switch_directory() {
-  DIRECTORIES=~/.dotfiles/.config/zsh/directories
   DIR=""; DIR=$(echo $DIRECTORIES | cut -d'=' -f1 | fzf)
   if [ "$DIR" = "" ]; then
     echo "No directory selected. Did not switch."
@@ -51,3 +53,6 @@ function remove_directory() {
   done
   sed -i $PATTERN_TO_REMOVE $DIRECTORIES
 }
+
+# load the hotkeys to quickly change directory
+source ./hotkeys.sh
