@@ -1,9 +1,14 @@
 DIRECTORIES=${0:A:h}/directories
 
+echo "$DIRECTORIES"
+
+return
+
 # TODO: should auto install fzf
 # check if the user has the fzf utility
 
 if [ ! -f $DIRECTORIES ]; then
+  echo "making '$DIRECTORIES'"
   touch $DIRECTORIES
 fi
 
@@ -18,7 +23,6 @@ function switch_directory() {
   FULLPATH=$(echo $DIRS | grep $DIR | head -n 1 | cut -d'=' -f2)
   if [ -d $FULLPATH ]; then
     cd "$FULLPATH"
-    update_status
   else
     echo "'${FULLPATH}' doesn't exist."
   fi
