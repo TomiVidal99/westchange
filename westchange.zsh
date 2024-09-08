@@ -45,8 +45,8 @@ function remove_directory() {
     echo "No working directories"
     return 
   fi
-  DIR=$(echo $WC_DIRECTORIES | cut -d'=' -f1 | fzf)
-  FULLPATH=$(echo $WC_DIRECTORIES | grep $DIR)
+  DIR=$(cat $WC_DIRECTORIES | cut -d'=' -f1 | fzf)
+  FULLPATH=$(cat $WC_DIRECTORIES | grep $DIR)
   PATTERN_TO_REMOVE="/$(echo $FULLPATH | sed 's/\//\\\//g')/d"
   while true; do
       read "yn?Remove '$FULLPATH' [y/n]: "
