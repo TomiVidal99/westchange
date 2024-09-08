@@ -3,6 +3,9 @@
 It's a simple plugin that allows you to quickly change between directories.
 The way it works it's that you store/save a directory to a file, later you can change to these directories by sorting through that list using the fzf utility. Simple yet effective (for it to be this way I highly recommend that you setup the hotkey to switch).
 
+![screenshot](./screenshot1.png)
+![screenshot](./screenshot2.png)
+
 ## Dependencies
 - fzf (fuzzy finder)
 
@@ -15,6 +18,10 @@ Just source the entry point `$>source westchange.sh`
 ### Oh-my-zsh
 
 It integrates with the plugin installer
+
+#### Post installation
+
+Close your terminal emulator and open again to enjoy!
 
 ## Settings
 
