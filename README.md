@@ -21,6 +21,9 @@ The way it works it's that you store/save a directory to a file, later you can c
 
 Just navigate to a directory that you want to quickly switch to. Once in that directory run `add_directory` or whatever alias you've set for it. And that's it, now you can quickly switch to it by hitting your hotkey or using the command `switch_directory`. If you regret adding a directory you can remove it by using the command `remove_directory`
 
+### Shortcuts
+This plugin it's meant to work with shortcuts, I highly recommend you to set it up. At least use aliases!
+
 ## Dependencies
 - [fzf (fuzzy finder)](https://github.com/junegunn/fzf)
 
